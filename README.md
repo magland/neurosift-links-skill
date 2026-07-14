@@ -10,12 +10,28 @@ PSTH, a spatial-series X/Y plot, a dynamic table, an imaging series, …).
 
 Scope: **DANDI and NWB only.** The host is always `https://neurosift.app`.
 
-> This skill is purely about **turning identifiers into URLs**. To *find* the
-> identifiers — dandisets, NWB files, neurodata object paths — use the companion
-> [neurosift-dandiset](https://github.com/magland/neurosift-dandiset-skill)
-> (deep-dive on one dandiset/file) and
-> [neurosift-datasets](https://github.com/magland/neurosift-datasets-skill)
-> (search across datasets) skills, or the DANDI REST API.
+## The Neurosift skill family
+
+This is one of three Claude skills that work together for neuroscience data on
+the DANDI Archive (and, for search, OpenNeuro / EBRAINS). Install whichever you
+need — they complement each other:
+
+- **[neurosift-datasets](https://github.com/magland/neurosift-datasets-skill)** —
+  find, filter, rank, and count datasets **across** DANDI, OpenNeuro, and
+  EBRAINS, and check which neurodata types a file has. *Discovery across many
+  datasets.*
+- **[neurosift-dandiset](https://github.com/magland/neurosift-dandiset-skill)** —
+  deep-dive a **single** dandiset or NWB file and load / visualize / analyze its
+  data in Python by streaming the remote file. *Depth on one file.*
+- **[neurosift-links](https://github.com/magland/neurosift-links-skill)**
+  *(this skill)* — build **neurosift.app** URLs that open a dandiset, an NWB
+  file, or a specific object/visualization in the interactive web viewer.
+  *Clickable views to share.*
+
+Typical flow: **datasets** → **dandiset** → **links** (discover, then analyze,
+then share an interactive view). This skill is purely about turning identifiers
+into URLs — get the dandiset ids, NWB files, and neurodata object paths it needs
+from the other two skills or the DANDI REST API.
 
 ## What it can do
 

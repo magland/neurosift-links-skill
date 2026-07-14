@@ -25,11 +25,31 @@ the user a link that lands exactly where you mean.
 This skill covers **DANDI and NWB only**. The base host is always
 `https://neurosift.app`.
 
-You supply the identifiers; this skill turns them into URLs. Neurodata object
-paths, asset paths, and asset download URLs come from elsewhere — typically the
-**neurosift-dandiset** skill (deep-dive on one dandiset / NWB file), the
-**neurosift-datasets** skill (search across datasets), or the DANDI REST API.
-Don't invent paths; use ones you've actually confirmed.
+You supply the identifiers; this skill turns them into URLs. Don't invent paths;
+use ones you've actually confirmed.
+
+## Companion skills
+
+This is one of three Neurosift skills that work together — for neuroscience data
+on the DANDI Archive (plus OpenNeuro / EBRAINS for search):
+
+- **neurosift-datasets** — find, filter, rank, and count datasets **across**
+  DANDI, OpenNeuro, and EBRAINS, and see which neurodata types (Units,
+  ElectricalSeries, …) a file contains. *Discovery across many datasets.*
+- **neurosift-dandiset** — deep-dive a **single** dandiset or NWB file: read its
+  metadata, inspect its contents, and load / visualize / analyze the data in
+  Python by streaming the remote file. *Depth on one file.*
+- **neurosift-links** *(this skill)* — construct **neurosift.app** URLs that open
+  a dandiset, an NWB file, or a specific object/visualization in the interactive
+  web viewer. *Clickable views to share.*
+
+Typical flow: **neurosift-datasets** (discover) → **neurosift-dandiset**
+(analyze) → **neurosift-links** (share an interactive view); each also works on
+its own. This skill only builds URLs — get the identifiers it needs (dandiset
+ids, asset paths, and neurodata object paths) from **neurosift-datasets**
+(search across archives), **neurosift-dandiset** (deep-dive one file), or the
+DANDI REST API. Whenever those skills report a dandiset, an NWB file, or an
+object, this skill turns it into a clickable Neurosift link.
 
 ## Golden rules
 
